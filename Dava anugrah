@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .register-box {
+      background: white;
+      padding: 25px;
+      margin-top: 40px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      width: 350px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .register-box:hover {
+      transform: scale(1.03);
+    }
+    .register-box h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 15px;
+    }
+    .input-group span {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .input-group input {
+      width: 90%;
+      padding: 10px 10px 10px 35px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .input-group input:focus {
+      border-color: #6a11cb;
+      box-shadow: 0 0 8px #6a11cb;
+      outline: none;
+    }
+    .register-box button {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 95%;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .register-box button:hover {
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+      transform: scale(1.05);
+    }
+    .register-box label {
+      font-size: 14px;
+    }
+    table {
+      margin-top: 30px;
+      border-collapse: collapse;
+      width: 85%;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+      font-size: 14px;
+    }
+    th {
+      background: #6a11cb;
+      color: white;
+    }
+    tbody tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-box">
+    <h2>✨ Register Akun</h2>
+    <form id="registerForm">
+      <div class="input-group">
+        <span>👤</span>
+        <input type="text" id="nama" placeholder="Masukkan Nama" required>
+      </div>
+      <div class="input-group">
+        <span>📧</span>
+        <input type="email" id="email" placeholder="Masukkan Email" required>
+      </div>
+      <div class="input-group">
+        <span>🎂</span>
+        <input type="date" id="tanggal" required>
+      </div>
+      <div class="input-group">
+        <span>🔑</span>
+        <input type="password" id="password" placeholder="Masukkan Password" required>
+      </div>
+      
+      <div>
+        <label><input type="radio" name="gender" value="Laki-laki" required> 👨 Laki-laki</label>
+        <label><input type="radio" name="gender" value="Wanita"> 👩 Wanita</label>
+      </div>
+
+      <div style="margin-top:10px;">
+        <label><input type="checkbox" id="syarat" required> ✅ Saya setuju dengan Syarat dan Ketentuan</label>
+      </div>
+
+      <button type="submit">🚀 Buat Akun</button>
+    </form>
+  </div>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Email</th>
+        <th>Tanggal Lahir</th>
+        <th>Jenis Kelamin</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    const tableBody = document.querySelector('#dataTable tbody');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nama = document.getElementById('nama').value;
+      const email = document.getElementById('email').value;
+      const tanggal = document.getElementById('tanggal').value;
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${nama}</td>
+        <td>${email}</td>
+        <td>${tanggal}</td>
+        <td>${gender}</td>
+      `;
+      tableBody.appendChild(row);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
